@@ -34,7 +34,7 @@ $env = [
         'ssl'    => false,
     ],
     'development' => [
-        'domain' => 'domain.local',
+        'domain' => 'msite_dev.local',
         'path'   => '',
         'ssl'    => false,
     ],

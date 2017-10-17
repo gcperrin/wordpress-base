@@ -13,7 +13,6 @@
  * @author     Studio 24 Ltd  <hello@studio24.net>
  */
 
-
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
 

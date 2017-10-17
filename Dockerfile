@@ -13,10 +13,12 @@ RUN ln -s /etc/apache2/sites-available/wp.conf \
     /etc/apache2/sites-enabled/
 
 # Wordpress setup
+RUN rm /var/www/html/index.html
 ADD ./wp /var/www/html
 RUN mkdir /var/www/conf
 ADD ./conf /var/www/conf
 RUN chown -R root:www-data /var/www/html
+RUN chown -R root:www-data /var/www/conf
 RUN find /var/www/html -type d -exec chmod g+s {} \;
 
 RUN chmod g+w /var/www/html/wp-content
@@ -27,3 +29,5 @@ RUN chmod -R g+w /var/www/html/wp-content/plugins
 RUN curl -sS https://getcomposer.org/installer | php -- \
     --install-dir=/usr/local/bin --filename=composer
 ENV TERM xterm-256color
+
+RUN service apache2 restart
