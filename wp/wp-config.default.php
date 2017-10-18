@@ -12,11 +12,6 @@
  * @version    2.0.0
  * @author     Studio 24 Ltd  <hello@studio24.net>
  */
-print("balls");
-print(getenv('DB_HOST'));
-print($_SERVER['DB_HOST']);
-print($_ENV['DB_HOST']);
-
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
@@ -25,16 +20,16 @@ define('DB_CHARSET', 'utf8mb4');
 define('DB_COLLATE', '');
 
 /** MySQL hostname */
-define('DB_HOST', $_ENV["DB_HOST"]);
+define('DB_HOST', getenv("DB_HOST") . ":3306");
 
 /** The name of the database for WordPress */
-define('DB_NAME', $_ENV["DB_NAME"]);
+define('DB_NAME', getenv("DB_NAME"));
 
 /** MySQL database username */
-define('DB_USER', $_ENV["DB_USER"]);
+define('DB_USER', getenv("DB_USER"));
 
 /** MySQL database password */
-define('DB_PASSWORD', $_ENV["DB_PASS"]);
+define('DB_PASSWORD', getenv("DB_PASS"));
 
 
 /**#@+

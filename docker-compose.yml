@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+   msite_db:
+     container_name: "${DB_HOST}"
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: "always"
+     hostname: "${DB_HOST}"
+     environment:
+       MYSQL_ROOT_PASSWORD: "${DB_ROOT}" 
+       MYSQL_DATABASE: "${DB_NAME}"  
+       MYSQL_USER: "${DB_USER}"   
+       MYSQL_PASSWORD: "${DB_PASS}"  
+   msite_wordpress:
+     build:
+       context: ./
+       dockerfile: ./Dockerfile
+       args:
+        - envpath=${WP_ENV}
+     container_name: "${WP_HOST}"
+     depends_on:
+       - msite_db
+     image: wp-base:latest
+     stdin_open: true
+     tty: true
+     ports:
+        - "127.0.0.1:8089:80"
+     restart: "always"
+     hostname: "${WP_HOST}"
+volumes:
+    db_data:

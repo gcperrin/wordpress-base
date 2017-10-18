@@ -1,0 +1,19 @@
+# Container wide settings
+export WP_ENV=development
+export WP_HOST=msite_dev
+export WP_PORT=8089
+export DB_HOST=msite_dev-db
+export DB_ROOT=therootgawd
+export DB_NAME=msite_dev
+export DB_USER=msite_dev
+export DB_PASS=development
+
+# WP specific security
+# export AUTH_KEY=".$TwrLXBr}PX~5A|%?cd4_(Z5QK%dG~MGqZoFbwI9=c3 0G; KKO}UbRI0:+oI21"
+# export SECURE_AUTH_KEY=")L2cmE%Cz DbaSKH~,{zJ-3x*%;Xx}P@bJY3<mtt]b.9d=?zdf&shcc%Be{_/-[|"
+# export LOGGED_IN_KEY="P~~<KRqKa|/6bX )kX}YK*[^hnp)2~ls:0Pp422ll{deC+\`.tuQ:BUBNjQPb5L9Z"
+# export NONCE_KEY="=uDDi$uGdoOGWu{?GEL%b 76&.3Ap?Q]?%B0\`)6=NWh!769lL}a>\`HXZchnP4]5i"
+# export AUTH_SALT="erOC4d9@iX!+AHz-q-?#?JPT{S{IZvKLSO6kE\`FVwtmEItZx]9>rc!fx,Cos;r}f"
+# export SECURE_AUTH_SALT="}x8h6d mym8y11RNNf9F[I)!>/lsS,v~h}>I;J|jsD#8<C#VE,{{#1yMPE%!Mn?k"
+# export LOGGED_IN_SALT="Z/+Ufw[TLJpA*a;r\`X|u@eKP]bF:V7&!<#nPLq/)tkENapG }1(\`,8j.22!0\`@*W"
+# export NONCE_SALT="-Q&i75O~P+:p}J2hv4BoOIL.GYpQ-s,KzRZ8Kt!x&ss+C;FmwMpi\`AL $KN1u]F:"

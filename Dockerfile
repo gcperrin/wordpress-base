@@ -6,6 +6,11 @@ RUN apt-get update && apt-get install -y curl apache2 php7.0 php-pear php7.0-mys
 RUN a2enmod rewrite
 RUN apachectl -k graceful
 
+ARG envpath
+ADD ./env/${envpath} /tmp/envfile
+ RUN cat /tmp/envfile >> /etc/apache2/envvars
+#RUN cp /etc/$testing /etc/environment
+
 # Apache setup
 ADD ./apache2 /etc/apache2
 RUN rm -rf /etc/apache2/sites-enabled/*
@@ -18,16 +23,18 @@ ADD ./wp /var/www/html
 RUN mkdir /var/www/conf
 ADD ./conf /var/www/conf
 RUN chown -R root:www-data /var/www/html
-RUN chown -R root:www-data /var/www/conf
+#RUN chown -R root:www-data /var/www/conf
 RUN find /var/www/html -type d -exec chmod g+s {} \;
+#RUN find /var/www/conf -type d -exec chmod g+s {} \;
 
 RUN chmod g+w /var/www/html/wp-content
 RUN chmod -R g+w /var/www/html/wp-content/themes
 RUN chmod -R g+w /var/www/html/wp-content/plugins
+RUN chmod 660 /var/www/html/.htaccess
 
 # Compose setup
-RUN curl -sS https://getcomposer.org/installer | php -- \
-    --install-dir=/usr/local/bin --filename=composer
+# RUN curl -sS https://getcomposer.org/installer | php -- \
+#     --install-dir=/usr/local/bin --filename=composer
 ENV TERM xterm-256color
 
 RUN service apache2 restart

@@ -138,6 +138,6 @@ require  __DIR__ . '/wp-config.default.php';
 require  __DIR__ . '/wp-config.' . WP_ENV . '.php';
 
 // 3rd - Load local config file with any sensitive settings
-if (file_exists( __DIR__ . '/wp-config.local.php')) {
-    require  __DIR__ . '/wp-config.local.php';
-}
+// if (file_exists( __DIR__ . '/wp-config.local.php')) {
+//     require  __DIR__ . '/wp-config.local.php';
+// }
