@@ -8,8 +8,7 @@ RUN apachectl -k graceful
 
 ARG envpath
 ADD ./env/${envpath} /tmp/envfile
- RUN cat /tmp/envfile >> /etc/apache2/envvars
-#RUN cp /etc/$testing /etc/environment
+RUN cat /tmp/envfile >> /etc/apache2/envvars
 
 # Apache setup
 ADD ./apache2 /etc/apache2
@@ -23,9 +22,7 @@ ADD ./wp /var/www/html
 RUN mkdir /var/www/conf
 ADD ./conf /var/www/conf
 RUN chown -R root:www-data /var/www/html
-#RUN chown -R root:www-data /var/www/conf
 RUN find /var/www/html -type d -exec chmod g+s {} \;
-#RUN find /var/www/conf -type d -exec chmod g+s {} \;
 
 RUN chmod g+w /var/www/html/wp-content
 RUN chmod -R g+w /var/www/html/wp-content/themes
@@ -35,6 +32,12 @@ RUN chmod 660 /var/www/html/.htaccess
 # Compose setup
 # RUN curl -sS https://getcomposer.org/installer | php -- \
 #     --install-dir=/usr/local/bin --filename=composer
-ENV TERM xterm-256color
 
-RUN service apache2 restart
+env APACHE_RUN_USER    www-data
+env APACHE_RUN_GROUP   www-data
+env APACHE_PID_FILE    /var/run/apache2.pid
+env APACHE_RUN_DIR     /var/run/apache2
+env APACHE_LOCK_DIR    /var/lock/apache2
+env APACHE_LOG_DIR     /var/log/apache2
+env LANG               C
+CMD ["apachectl", "-D", "FOREGROUND"]

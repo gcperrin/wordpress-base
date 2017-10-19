@@ -51,9 +51,6 @@ function s24_load_environment_config() {
     // Load environments
     require  __DIR__ . '/wp-config.env.php';
 
-    print('TEST');
-    print(WP_ENV);
-
     foreach ($env as $environment => $env_vars) {
         if (!isset($env_vars['domain'])) {
             throw new Exception('You must set the domain value in your environment array, see wp-config.env.php');
@@ -130,7 +127,6 @@ s24_load_environment_config();
 /**
  * Load config
  */
-print(__DIR__);
 // 1st - Load default config
 require  __DIR__ . '/wp-config.default.php';
 
