@@ -7,7 +7,7 @@ RUN a2enmod rewrite
 RUN apachectl -k graceful
 
 ARG envpath
-ADD ./env/${envpath} /tmp/envfile
+ADD ../env/${envpath} /tmp/envfile
 RUN cat /tmp/envfile >> /etc/apache2/envvars
 
 # Apache setup
@@ -19,8 +19,6 @@ RUN ln -s /etc/apache2/sites-available/wp.conf \
 # Wordpress setup
 RUN rm /var/www/html/index.html
 ADD ./wp /var/www/html
-RUN mkdir /var/www/conf
-ADD ./conf /var/www/conf
 RUN chown -R root:www-data /var/www/html
 RUN find /var/www/html -type d -exec chmod g+s {} \;
 

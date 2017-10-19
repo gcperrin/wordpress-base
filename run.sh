@@ -1,9 +1,6 @@
 
 #!/bin/bash
 
-proj=msite
-
-
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -13,7 +10,7 @@ do
         -e|--env)
             ENV="$2"
             if [ "$ENV" == "development" ]  || [ "$ENV" == "stage" ] || [ "$ENV" == "production" ] ; then
-                source "./env/${ENV}"
+                source "../env/${ENV}"
                 docker-compose build
                 docker-compose up -d
                 exit 0
